@@ -11,6 +11,9 @@ class Person():
 
     '''In python you cannot define multiple constructors, instead you have
     to use default values'''
+
+    country = ['Colombia'] # Static attribute
+
     def __init__(self, rol, name: str = None, age=None, heigth=None):
         
         self.rol = rol
@@ -35,6 +38,13 @@ class Person():
     def heigth(self):
         return self.__heigth
 
+    def sayHiToPerson(self):
+        return 'Hi! {}'.format(self.__name)
+
+    @staticmethod
+    def sayHiToInputPerson(name):
+        return 'Hi there! {}'.format(name)
+
 
 p1 = Person(Rol.STUDENT, name=21, age=26, heigth=176)
 print(p1.name) # getter
@@ -51,4 +61,19 @@ print(p1.rol.name, p1.rol.value, type(p1.rol))
 
 if p1.rol == Rol.STUDENT:
     print('same types!')
+
+p1.name = 'Daniel'
+print(p1.sayHiToPerson())
+
+# using static method
+print(Person.sayHiToInputPerson('Juan'))
+
+# Print static attribute
+print(p1.country)
+
+p2 = Person(Rol.PROFESSOR)
+
+p2.country.append('Russia')
+
+print(p1.country)
 
